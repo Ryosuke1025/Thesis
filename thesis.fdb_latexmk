@@ -1,0 +1,6 @@
+# Fdb version 4
+["dvipdf"] 0 "thesis.dvi" "thesis.pdf" "thesis" 0 -1
+  "thesis.dvi" 0 -1 0 "latex"
+  (generated)
+  "thesis.pdf"
+  (rewritten before read)
