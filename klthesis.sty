@@ -1,0 +1,83 @@
+% Last updated: 2023/02/19 22:05:08
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ifthen}
+\usepackage[dvipdfmx,bookmarks=false]{hyperref}
+\usepackage{pxjahyper}
+\hypersetup{% hyperrefオプションリスト
+  setpagesize=false,
+  colorlinks=true,%
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+
+\setlength{\oddsidemargin}{35pt}
+\setlength{\evensidemargin}{0pt}
+
+\newcommand{\type}[1]{\gdef\@type{#1}}
+\newcommand{\id}[1]{\gdef\@id{#1}}
+\newcommand{\fyear}[1]{\gdef\@fyear{#1}}
+\renewcommand{\abstract}[1]{\gdef\@abstract{#1}}
+
+\newcommand{\BTh}{
+  \Large 卒業論文\\
+  \vspace{2.5cm}
+  \Huge \@title \\
+  \vspace{3cm}
+  \Large 関西学院大学 理工学部 情報科学科\\
+  \vspace{1cm}
+  %\LARGE \学籍番号　\名前 \\
+  \LARGE \@id
+  %\vspace{1cm}
+  \@author \\
+  \vspace{3cm}
+  \Large \@fyear 年3月\\
+  \vspace{3cm}
+  \Large 指導教員：北村 泰彦 教授
+}
+
+\newcommand{\MTh}{
+  \Large 理工学研究科\\
+  \vspace{1.5cm}
+  \Large \@fyear 年3月\\
+  \vspace{1.5cm}
+  \Large 修士論文\\
+  \vspace{2cm}
+  \Huge \@title \\
+  \vspace{9cm}%論文タイトルの長さによってこの値を微調整
+  \LARGE \@id \@author\\（情報科学専攻）
+}
+
+\newcommand{\Th}{
+  \ifthenelse{\equal{\@type}{M}}{\MTh}{\BTh}
+}
+
+\renewcommand{\maketitle}{
+  \begin{titlepage}
+    \begin{center}
+      \Th
+    \end{center}
+  \end{titlepage}
+  \pagenumbering{roman}
+  \chapter*{内容梗概}
+  \@abstract
+  \tableofcontents
+  \listoffigures
+  \listoftables
+  \newpage
+  \setcounter{page}{0}
+  \pagenumbering{arabic}
+}
+
+\newcommand{\acknowledgement}{
+  \chapter*{謝辞}
+  \addcontentsline{toc}{chapter}{謝辞}
+}
+
+\renewcommand{\bibname}{参考文献}
+
+\newcommand{\reference}[1]{
+  \addcontentsline{toc}{chapter}{\bibname}
+  \bibliographystyle{junsrt}
+  \bibliography{#1}
+}
