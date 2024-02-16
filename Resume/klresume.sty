@@ -1,0 +1,53 @@
+% Last updated: 2023/02/19 20:39:51
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ifthen}
+\usepackage[dvipdfmx,bookmarks=false]{hyperref}
+\usepackage{pxjahyper}
+\hypersetup{% hyperrefオプションリスト
+  setpagesize=false,
+  colorlinks=true,%
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+
+\setlength{\topmargin}{-25mm}
+\setlength{\oddsidemargin}{-6mm}
+\setlength{\textwidth}{185mm}
+\setlength{\textheight}{283mm}
+
+\newcommand{\type}[1]{\gdef\@type{#1}}
+\newcommand{\term}[1]{\gdef\@term{#1}}
+\newcommand{\id}[1]{\gdef\@id{#1}}
+\newcommand{\fyear}[1]{\gdef\@fyear{#1}}
+\newcommand{\name}[1]{\gdef\@name{#1}}
+
+\renewcommand{\author}[1]{\gdef\@author{
+    \ifthenelse{\equal{\@type}{B}}{情報科学科}{情報科学専攻} 北村研究室 \@id 番 #1}}
+
+
+\renewcommand{\maketitle}{
+  %%%%%%%%%%%% baselineskip, kanjiskipはバランスをみて使用 %%%%%%%%%%%%%%%
+  \baselineskip 11pt
+  %\kanjiskip=.1zw plus 1pt minus 1pt
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \twocolumn[
+    \begin{center}
+      \@fyear
+      年度 \ifthenelse{\equal{\@type}{M}}{修士論文}{卒業研究}
+      \ifthenelse{\equal{\@term}{M}}{中間}{最終}
+      発表会資料 \par
+      \vspace{2mm}
+      \hrule
+      \vspace{4mm}
+      \LARGE \@title \par
+      \vspace{4mm}
+      \large \@author \par
+      \vspace{2mm}
+      \hrule
+      \vspace{1mm}
+    \end{center}
+  ]
+  \thispagestyle{empty}
+}
+
